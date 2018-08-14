@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Game of life</title>
+    <link rel="stylesheet" type="text/css" href="gameoflife.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="gameoflife.js"></script>
+</head>
+<body>
+    <div id="title">Game of life</div>
+    <div id="author">By: Eduardo Garcia Hernandez</div>
+    <div id="dashboard" class="controls">        
+        <ul id="size">
+            <li id="small">5X5</li>
+            <li id="medium" class="selected">10X10</li>
+            <li id="large">15X15</li>
+        </ul>
+        <ul id="command" class="controls">
+            <li id="step">Step</li>                        
+        </ul>            
+    </div>
+    <div id="board"></div>
+    <div id="new-game" class="controls">Play again?</div>
+    <script type="text/javascript">
+        var board;
+        $(document).ready(function () {
+            newGame('reg');
+            $('#new-game').hide();
+
+            $('#size li').click(function (eventObject) {
+                $('#size li').removeClass('selected');
+                $(this).addClass('selected');
+                var size = $(this).attr('id');
+                newGame(size);
+                $('#new-game').hide();
+            });
+
+            $('#new-game').click(function (eventObject) {
+                var size = $('#size li.selected').attr('id');
+                newGame(size);
+                $('#new-game').hide();
+            });
+
+            $('#step').click(function(eventObject){
+                step();
+            });
+            $('#run').click(function(eventObject){
+                run();
+            });
+        });
+        /*
+            This is equivalent to-
+            $(function() {
+            });
+        */
+    </script>
+</body>
+</html>
